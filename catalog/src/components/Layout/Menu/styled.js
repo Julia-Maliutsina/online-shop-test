@@ -5,12 +5,11 @@ export const MenuWrapper = styled.div`
   height: 80px;
   display: flex;
   align-items: flex-start;
-  padding: 29px 101px 0px 117px;
+  padding: 29px 100px 0px 100px;
 `;
 
 export const MenuCategories = styled.div`
   width: 234px;
-  color: #1d1f22;
   font-family: 'Raleway';
   font-size: 16px;
   font-weight: 400;
@@ -21,8 +20,11 @@ export const MenuCategories = styled.div`
 
 export const MenuCategory = styled.div`
   height: 51px;
-  margin: 0px 16px;
+  padding: 0px 16px;
+  margin-right: 4px;
   display: inline-block;
+  color: ${(props) => (props.selected ? '#5ece7b' : '#1d1f22')};
+  border-bottom: ${(props) => (props.selected ? '2px solid #5ece7b' : 'none')};
   &:hover {
     color: #5ece7b;
     border-bottom: 2px solid #5ece7b;

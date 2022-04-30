@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 @font-face {
   font-family: Raleway;
   src: url('../src/fonts/Raleway-Regular.ttf');
