@@ -11,3 +11,13 @@ a {
   font-family: Raleway;
   src: url('../src/fonts/Raleway-Regular.ttf');
 }
+
+@font-face {
+  font-family: Raleway-Medium;
+  src: url('../src/fonts/Raleway-Medium.ttf');
+}
+
+@font-face {
+  font-family: Raleway-Light;
+  src: url('../src/fonts/Raleway-Light.ttf');
+}

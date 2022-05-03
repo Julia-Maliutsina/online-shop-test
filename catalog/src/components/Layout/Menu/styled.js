@@ -12,7 +12,6 @@ export const MenuCategories = styled.div`
   width: 234px;
   font-family: 'Raleway';
   font-size: 16px;
-  font-weight: 400;
   text-transform: uppercase;
   flex-grow: 1;
   flex-shrink: 0;
