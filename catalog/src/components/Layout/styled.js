@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PageWrapper = styled.div`
-  padding: 80px 100px;
+  padding: 80px 100px 10px 100px;
 `;
 
 export const Title = styled.p`

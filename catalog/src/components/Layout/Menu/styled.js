@@ -72,3 +72,42 @@ export const SpaceHolder = styled.div`
   flex-grow: 2;
   flex-shrink: 1;
 `;
+
+export const CurrencySelector = styled.div`
+  display: ${(props) => (props.display ? 'block' : 'none')};
+  position: absolute;
+  z-index: 5;
+  width: 114px;
+  height: 170px;
+  background: #ffffff;
+  padding: 15px 0;
+  right: 85px;
+  box-shadow: 0px 4px 35px 0px #a8acb030;
+`;
+
+export const CurrencyOption = styled.div`
+  text-align: center;
+  height: 45px;
+  width: 100%;
+  padding: 8px;
+  font-family: Raleway-Medium;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 29px;
+  background: ${(props) => (props.selected ? '#eeeeee' : '#ffffff')};
+  &:hover {
+    background: #eeeeee;
+    cursor: pointer;
+  }
+`;
+
+export const CoverLayer = styled.div`
+  display: ${(props) => (props.display ? 'block' : 'none')};
+  position: absolute;
+  right: 0;
+  top: 80px;
+  z-index: 1;
+  width: 100%;
+  height: calc(100% - 80px);
+  background: #39374838;
+`;
