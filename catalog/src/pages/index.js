@@ -1,3 +1,4 @@
-export { default as WomenCatalog } from './Women';
-export { default as MenCatalog } from './Men';
-export { default as KidsCatalog } from './Kids';
+export { default as TechCatalog } from './Tech';
+export { default as ClothingCatalog } from './Clothing';
+export { default as AllCatalog } from './All';
+export { default as Product } from './Product';

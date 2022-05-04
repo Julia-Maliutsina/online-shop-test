@@ -21,3 +21,23 @@ a {
   font-family: Raleway-Light;
   src: url('../src/fonts/Raleway-Light.ttf');
 }
+
+@font-face {
+  font-family: Raleway-SemiBold;
+  src: url('../src/fonts/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: Raleway-Bold;
+  src: url('../src/fonts/Raleway-Bold.ttf');
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('../src/fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: RobotoCondensed-Bold;
+  src: url('../src/fonts/RobotoCondensed-Bold.ttf');
+}

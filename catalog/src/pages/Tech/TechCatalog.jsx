@@ -4,14 +4,14 @@ import React from 'react';
 import { PAGE } from 'constants/pages';
 import { Catalog } from 'components/Catalog';
 
-class WomenCatalog extends React.Component {
+class TechCatalog extends React.Component {
   render() {
     return (
-      <Layout pagename={PAGE.women}>
-        <Catalog />
+      <Layout pagename={PAGE.tech}>
+        <Catalog section={PAGE.tech} />
       </Layout>
     );
   }
 }
 
-export default WomenCatalog;
+export default TechCatalog;

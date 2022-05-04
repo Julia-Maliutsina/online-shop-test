@@ -23,14 +23,14 @@ class Menu extends React.Component {
       <MenuWrapper>
         <MenuCategories>
           <nav>
-            <Link to="/women">
-              <MenuCategory selected={this.props.pagename === PAGE.women}>Women</MenuCategory>
+            <Link to="/tech">
+              <MenuCategory selected={this.props.pagename === PAGE.tech}>Tech</MenuCategory>
             </Link>
-            <Link to="/men">
-              <MenuCategory selected={this.props.pagename === PAGE.men}>Men</MenuCategory>
+            <Link to="/clothing">
+              <MenuCategory selected={this.props.pagename === PAGE.clothing}>Clothing</MenuCategory>
             </Link>
-            <Link to="/kids">
-              <MenuCategory selected={this.props.pagename === PAGE.kids}>Kids</MenuCategory>
+            <Link to="/all">
+              <MenuCategory selected={this.props.pagename === PAGE.all}>All</MenuCategory>
             </Link>
           </nav>
         </MenuCategories>

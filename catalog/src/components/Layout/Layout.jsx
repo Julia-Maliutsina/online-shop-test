@@ -9,7 +9,7 @@ class Layout extends React.Component {
       <div>
         <Menu pagename={this.props.pagename} />
         <PageWrapper>
-          <Title>{this.props.pagename}</Title>
+          {!this.props.disableTitle && <Title>{this.props.pagename}</Title>}
           {this.props.children}
         </PageWrapper>
       </div>

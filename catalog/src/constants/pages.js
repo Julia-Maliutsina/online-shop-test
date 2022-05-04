@@ -1,5 +1,6 @@
 export const PAGE = {
-  women: 'Women',
-  men: 'Men',
-  kids: 'Kids',
+  tech: 'Tech',
+  clothing: 'Clothing',
+  all: 'All',
+  product: 'Product',
 };

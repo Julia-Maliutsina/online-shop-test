@@ -1,16 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
 
+import { TechCatalog, ClothingCatalog, AllCatalog, Product } from 'pages';
+import { PAGE } from 'constants/pages';
+
 import './App.css';
-import { WomenCatalog, MenCatalog, KidsCatalog } from 'pages';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<WomenCatalog />} />
-        <Route path="women" element={<WomenCatalog />} />
-        <Route path="men" element={<MenCatalog />} />
-        <Route path="kids" element={<KidsCatalog />} />
+        <Route path="/" element={<AllCatalog />} />
+        <Route path="tech">
+          <Route index element={<TechCatalog />} />
+          <Route path="item" element={<Product section={PAGE.tech} />} />
+        </Route>
+        <Route path="clothing" element={<ClothingCatalog />} />
+        <Route path="all" element={<AllCatalog />} />
       </Routes>
     </div>
   );

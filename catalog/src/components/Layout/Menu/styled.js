@@ -54,7 +54,6 @@ export const CartButton = styled.div`
   display: inline-block;
   margin-left: 22px;
   margin-top: 6px;
-
   vertical-align: top;
   &:hover {
     cursor: pointer;
@@ -65,7 +64,6 @@ export const Currency = styled.img``;
 
 export const Arrow = styled.img`
   vertical-align: text-top;
-  margin-top: 3px;
 `;
 
 export const Cart = styled.img``;
