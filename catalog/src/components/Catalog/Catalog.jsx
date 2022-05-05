@@ -10,7 +10,7 @@ class Catalog extends React.Component {
     return (
       <CatalogItemsGrid>
         {items.map((item) => (
-          <CatalogItem item={item} section={this.props.section} />
+          <CatalogItem item={item} category={this.props.category} />
         ))}
       </CatalogItemsGrid>
     );

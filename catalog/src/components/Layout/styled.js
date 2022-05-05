@@ -11,4 +11,5 @@ export const Title = styled.p`
   color: #1d1f22;
   margin-top: 0;
   margin-bottom: 119px;
+  text-transform: capitalize;
 `;

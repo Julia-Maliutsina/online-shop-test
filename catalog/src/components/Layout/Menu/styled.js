@@ -86,10 +86,10 @@ export const CurrencySelector = styled.div`
 `;
 
 export const CurrencyOption = styled.div`
-  text-align: center;
+  text-align: left;
   height: 45px;
   width: 100%;
-  padding: 8px;
+  padding: 8px 20px;
   font-family: Raleway-Medium;
   font-size: 18px;
   font-weight: 500;

@@ -6,7 +6,7 @@ import { ItemWrapper, ItemImage, ItemName, ItemPrice } from './styled';
 class CatalogItem extends React.Component {
   render() {
     return (
-      <Link to={`/${this.props.section}/item`}>
+      <Link to={`/${this.props.category}/item`}>
         <ItemWrapper>
           <ItemImage imageUrl={this.props.item.images[0]} />
           <ItemName>{this.props.item.name}</ItemName>

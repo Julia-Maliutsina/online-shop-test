@@ -1,22 +1,31 @@
 import { Routes, Route } from 'react-router-dom';
+import { Query } from '@apollo/react-components';
 
-import { TechCatalog, ClothingCatalog, AllCatalog, Product } from 'pages';
-import { PAGE } from 'constants/pages';
+import { CatalogPage, ProductPage } from 'pages';
+import CATEGORIES_QUERY from 'api/getCategories';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<AllCatalog />} />
-        <Route path="tech">
-          <Route index element={<TechCatalog />} />
-          <Route path="item" element={<Product section={PAGE.tech} />} />
-        </Route>
-        <Route path="clothing" element={<ClothingCatalog />} />
-        <Route path="all" element={<AllCatalog />} />
-      </Routes>
+      <Query query={CATEGORIES_QUERY}>
+        {({ loading, data }) => {
+          if (loading) return 'Loading...';
+          const { categories } = data;
+          return (
+            <Routes>
+              {categories.map((category) => (
+                <Route path={category.name}>
+                  <Route index element={<CatalogPage pagename={category.name} />} />
+                  <Route path="item" element={<ProductPage section={category.name} />} />
+                </Route>
+              ))}
+              ;
+            </Routes>
+          );
+        }}
+      </Query>
     </div>
   );
 }

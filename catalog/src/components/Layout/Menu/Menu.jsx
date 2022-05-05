@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Query } from '@apollo/react-components';
 
-import { PAGE } from 'constants/pages';
-import { CURRENCY } from 'constants/currencies';
+import CATEGORIES_QUERY from 'api/getCategories';
+import CURRENCIES_QUERY from 'api/getCurrencies';
 
 import {
   MenuWrapper,
@@ -39,15 +40,19 @@ class Menu extends React.Component {
       <MenuWrapper>
         <MenuCategories>
           <nav>
-            <Link to="/tech">
-              <MenuCategory selected={this.props.pagename === PAGE.tech}>Tech</MenuCategory>
-            </Link>
-            <Link to="/clothing">
-              <MenuCategory selected={this.props.pagename === PAGE.clothing}>Clothing</MenuCategory>
-            </Link>
-            <Link to="/all">
-              <MenuCategory selected={this.props.pagename === PAGE.all}>All</MenuCategory>
-            </Link>
+            <Query query={CATEGORIES_QUERY}>
+              {({ loading, data }) => {
+                if (loading) return 'Loading...';
+                const { categories } = data;
+                return categories.map((category) => (
+                  <Link to={`/${category.name}`}>
+                    <MenuCategory selected={this.props.pagename === category.name}>
+                      {category.name}
+                    </MenuCategory>
+                  </Link>
+                ));
+              }}
+            </Query>
           </nav>
         </MenuCategories>
         <Logo src={logo} />
@@ -57,14 +62,20 @@ class Menu extends React.Component {
             <Arrow src={this.state.isCurrencyOpened ? arrowUpIcon : arrowDownIcon} />
           </CurrencyButton>
           <CurrencySelector display={this.state.isCurrencyOpened}>
-            {CURRENCY.map((currency, index) => (
-              <CurrencyOption
-                selected={this.state.selectedCurrency === index}
-                onClick={() => this.selectCurrency(index)}
-              >
-                {currency}
-              </CurrencyOption>
-            ))}
+            <Query query={CURRENCIES_QUERY}>
+              {({ loading, data }) => {
+                if (loading) return 'Loading...';
+                const { currencies } = data;
+                return currencies.map((currency) => (
+                  <CurrencyOption
+                    selected={this.state.selectedCurrency === currency.label}
+                    onClick={() => this.selectCurrency(currency.label)}
+                  >
+                    {currency.symbol} {currency.label}
+                  </CurrencyOption>
+                ));
+              }}
+            </Query>
           </CurrencySelector>
           <CartButton>
             <Cart src={cartIcon} />
