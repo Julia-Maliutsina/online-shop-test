@@ -24,7 +24,7 @@ import { arrowDownIcon, arrowUpIcon, cartIcon, currencyIcon, logo } from '../../
 class Menu extends React.Component {
   state = {
     isCurrencyOpened: false,
-    selectedCurrency: 0,
+    selectedCurrency: 'USD',
   };
 
   openCurrency = () => {
@@ -32,7 +32,7 @@ class Menu extends React.Component {
   };
 
   selectCurrency = (currencyToSelect) => {
-    this.setState({ selectedCurrency: currencyToSelect });
+    this.setState({ selectedCurrency: currencyToSelect, isCurrencyOpened: false });
   };
 
   render() {

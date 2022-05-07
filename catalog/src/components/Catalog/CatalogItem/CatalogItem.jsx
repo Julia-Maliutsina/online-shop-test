@@ -8,9 +8,14 @@ class CatalogItem extends React.Component {
     return (
       <Link to={`/${this.props.category}/item`}>
         <ItemWrapper>
-          <ItemImage imageUrl={this.props.item.images[0]} />
-          <ItemName>{this.props.item.name}</ItemName>
-          <ItemPrice>{this.props.item.price}</ItemPrice>
+          <ItemImage imageUrl={this.props.product.gallery[0]} />
+          <ItemName>
+            {this.props.product.brand} {this.props.product.name}
+          </ItemName>
+          <ItemPrice>
+            {this.props.product.prices[0].amount}
+            {this.props.product.prices[0].currency.symbol}
+          </ItemPrice>
         </ItemWrapper>
       </Link>
     );
