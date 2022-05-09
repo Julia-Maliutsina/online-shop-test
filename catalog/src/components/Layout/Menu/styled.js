@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 export const MenuWrapper = styled.div`
+  position: fixed;
   width: 100%;
   height: 80px;
   display: flex;
   align-items: flex-start;
   padding: 29px 100px 0px 100px;
+  z-index: 15;
+  background: #fff;
 `;
 
 export const MenuCategories = styled.div`
@@ -37,6 +40,7 @@ export const Logo = styled.img`
   height: 41px;
   margin-top: -5px;
 `;
+
 export const Actions = styled.div`
   flex-grow: 1;
   flex-shrink: 0;
@@ -45,6 +49,7 @@ export const Actions = styled.div`
 
 export const CurrencyButton = styled.div`
   display: inline-block;
+  width: 40px;
   &:hover {
     cursor: pointer;
   }
@@ -60,10 +65,16 @@ export const CartButton = styled.div`
   }
 `;
 
-export const Currency = styled.img``;
+export const Currency = styled.span`
+  font-family: Raleway-Medium;
+  font-size: 18px;
+  line-height: 29px;
+  text-align: left;
+`;
 
 export const Arrow = styled.img`
-  vertical-align: text-top;
+  vertical-align: middle;
+  margin-left: 8px;
 `;
 
 export const Cart = styled.img``;
@@ -76,7 +87,6 @@ export const SpaceHolder = styled.div`
 export const CurrencySelector = styled.div`
   display: ${(props) => (props.display ? 'block' : 'none')};
   position: absolute;
-  z-index: 5;
   width: 114px;
   height: 170px;
   background: #ffffff;
@@ -103,7 +113,7 @@ export const CurrencyOption = styled.div`
 
 export const CoverLayer = styled.div`
   display: ${(props) => (props.display ? 'block' : 'none')};
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 80px;
   z-index: 1;

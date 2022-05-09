@@ -16,7 +16,7 @@ export const ItemImage = styled.div`
     props.imageUrl ||
     'https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0'});
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 `;
 

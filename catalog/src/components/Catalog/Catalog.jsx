@@ -21,7 +21,13 @@ class Catalog extends React.Component {
             const { products } = data.category;
             console.log(products);
             return products.map((product) => (
-              <CatalogItem key={product.id} product={product} category={this.props.category} />
+              <CatalogItem
+                key={product.id}
+                product={product}
+                category={this.props.category}
+                currency={this.props.currency}
+                currencySymbol={this.props.currencySymbol}
+              />
             ));
           }}
         </Query>
