@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
 
 import Layout from 'components/Layout';
-import items from 'constants/itemsMocked';
 import PRODUCT_QUERY from 'api/getProduct';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
 
@@ -23,25 +22,38 @@ import {
   ProductPrice,
   AddToCartButton,
 } from './styled';
-
-const PRODUCT = items[0];
 class Product extends React.Component {
   state = {
     selectedImage: 0,
-    selectedColor: PRODUCT.colors[0],
-    selectedSize: PRODUCT.sizes[0],
+    selectedAttributes: {},
   };
 
   selectImage = (imageIndex) => {
     this.setState({ selectedImage: imageIndex });
   };
 
-  selectColor = (colorToSelect) => {
-    this.setState({ selectedColor: colorToSelect });
+  setHtml = (html) => {
+    return { __html: html };
   };
 
-  selectSize = (sizeToSelect) => {
-    this.setState({ selectedSize: sizeToSelect });
+  selectAttribute = (attributeToSelect, attributeName) => {
+    const newSelectedAttributes = this.state.selectedAttributes;
+    if (!newSelectedAttributes.length) {
+      newSelectedAttributes[attributeName] = attributeToSelect;
+      console.log(newSelectedAttributes);
+      this.setState({ selectedAttributes: newSelectedAttributes });
+      return;
+    }
+    for (let i = 0; i <= this.state.selectedAttributes.length; i++) {
+      if (
+        this.state.selectedAttributes[i][attributeName] ||
+        i === this.state.selectedAttributes.length
+      ) {
+        newSelectedAttributes[i][attributeName] = attributeToSelect;
+        this.setState({ selectedAttributes: newSelectedAttributes });
+        break;
+      }
+    }
   };
 
   render() {
@@ -77,27 +89,32 @@ class Product extends React.Component {
                   <ProductInfo>
                     <ProductBrand>{product.brand}</ProductBrand>
                     <ProductName>{product.name}</ProductName>
-                    <ProductOptions>
-                      <ProductOptionsTitle>Size:</ProductOptionsTitle>
-                      {PRODUCT.sizes.map((size) => (
-                        <ProductSizesOption
-                          onClick={() => this.selectSize(size)}
-                          selected={size === this.state.selectedSize}
-                        >
-                          {size}
-                        </ProductSizesOption>
-                      ))}
-                    </ProductOptions>
-                    <ProductOptions>
-                      <ProductOptionsTitle>Color:</ProductOptionsTitle>
-                      {PRODUCT.colors.map((color) => (
-                        <ProductColorsOption
-                          color={color}
-                          selected={color === this.state.selectedColor}
-                          onClick={() => this.selectColor(color)}
-                        />
-                      ))}
-                    </ProductOptions>
+                    {product.attributes.map((attribute) => (
+                      <ProductOptions key={attribute.id}>
+                        <ProductOptionsTitle>{attribute.name}</ProductOptionsTitle>
+                        {attribute.type === 'text'
+                          ? attribute.items.map((item) => (
+                              <ProductSizesOption
+                                key={item.id}
+                                onClick={() => this.selectAttribute(item.value, attribute.name)}
+                                selected={
+                                  this.state.selectedAttributes[attribute.name] === item.value
+                                }
+                              >
+                                {item.value}
+                              </ProductSizesOption>
+                            ))
+                          : attribute.items.map((item) => (
+                              <ProductColorsOption
+                                color={item.value}
+                                selected={
+                                  this.state.selectedAttributes[attribute.name] === item.value
+                                }
+                                onClick={() => this.selectAttribute(item.value, attribute.name)}
+                              />
+                            ))}
+                      </ProductOptions>
+                    ))}
                     <ProductOptions>
                       <ProductOptionsTitle>Price:</ProductOptionsTitle>
                       <ProductPrice>
@@ -106,7 +123,9 @@ class Product extends React.Component {
                       </ProductPrice>
                     </ProductOptions>
                     <AddToCartButton>Add to cart</AddToCartButton>
-                    <ProductDescription>{product.description}</ProductDescription>
+                    <ProductDescription
+                      dangerouslySetInnerHTML={this.setHtml(product.description)}
+                    ></ProductDescription>
                   </ProductInfo>
                 </>
               );
@@ -118,4 +137,6 @@ class Product extends React.Component {
   }
 }
 
-export default (props) => <Product {...props} params={useParams()} />;
+const ProductWithParams = (props) => <Product {...props} params={useParams()} />;
+
+export default ProductWithParams;

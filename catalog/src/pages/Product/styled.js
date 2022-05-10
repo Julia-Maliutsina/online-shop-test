@@ -10,7 +10,7 @@ export const ProductWrapper = styled.div`
 export const ProductGallery = styled.div`
   flex-shrink: 1;
   flex-grow: 1;
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - 170px);
   overflow-y: auto;
   min-width: 110px;
   margin-left: -5px;
@@ -27,12 +27,13 @@ export const ProductGalleryItem = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-bottom: 32px;
   &:hover {
     box-shadow: 0px 0px 3px 4px #a8acb030;
     cursor: pointer;
   }
-  &:not(:last-child) {
-    margin-bottom: 32px;
+  &:last-child {
+    margin-bottom: 10px;
   }
 `;
 
@@ -74,7 +75,7 @@ export const ProductName = styled.p`
   letter-spacing: 0em;
   text-align: left;
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 43px;
 `;
 
 export const ProductOptions = styled.div`
@@ -86,7 +87,7 @@ export const ProductOptions = styled.div`
 
 export const ProductSizesOption = styled.div`
   display: inline-block;
-  width: 63px;
+  min-width: 63px;
   height: 45px;
   margin-top: 8px;
   margin-bottom: 24px;
@@ -144,7 +145,7 @@ export const ProductPrice = styled.p`
 `;
 
 export const ProductDescription = styled.div`
-  height: 103px;
+  max-height: 180px;
   overflow-y: auto;
   font-family: Roboto;
   font-size: 16px;
