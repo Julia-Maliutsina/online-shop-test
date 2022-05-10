@@ -2,7 +2,46 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 @font-face {
   font-family: Raleway;
   src: url('../src/fonts/Raleway-Regular.ttf');
+}
+
+@font-face {
+  font-family: Raleway-Medium;
+  src: url('../src/fonts/Raleway-Medium.ttf');
+}
+
+@font-face {
+  font-family: Raleway-Light;
+  src: url('../src/fonts/Raleway-Light.ttf');
+}
+
+@font-face {
+  font-family: Raleway-SemiBold;
+  src: url('../src/fonts/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: Raleway-Bold;
+  src: url('../src/fonts/Raleway-Bold.ttf');
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('../src/fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: RobotoCondensed-Bold;
+  src: url('../src/fonts/RobotoCondensed-Bold.ttf');
 }
