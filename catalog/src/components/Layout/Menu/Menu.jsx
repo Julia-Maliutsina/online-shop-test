@@ -65,9 +65,11 @@ class Menu extends React.Component {
                 }}
               </Query>
             </CurrencySelector>
-            <CartButton>
-              <Cart src={cartIcon} />
-            </CartButton>
+            <Link to="/cart">
+              <CartButton>
+                <Cart src={cartIcon} />
+              </CartButton>
+            </Link>
           </Actions>
         </MenuWrapper>
         <CoverLayer

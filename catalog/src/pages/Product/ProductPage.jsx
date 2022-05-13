@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
+import { connect } from 'react-redux';
 
 import Layout from 'components/Layout';
 import PRODUCT_QUERY from 'api/getProduct';
@@ -40,7 +41,6 @@ class Product extends React.Component {
     const newSelectedAttributes = this.state.selectedAttributes;
     if (!newSelectedAttributes.length) {
       newSelectedAttributes[attributeName] = attributeToSelect;
-      console.log(newSelectedAttributes);
       this.setState({ selectedAttributes: newSelectedAttributes });
       return;
     }
@@ -54,6 +54,16 @@ class Product extends React.Component {
         break;
       }
     }
+  };
+
+  addToCart = (id, prices) => {
+    const productToAdd = {
+      id: id,
+      prices: prices,
+      selectedAttributes: this.state.selectedAttributes,
+      quantity: 1,
+    };
+    this.props.addProductToCart(productToAdd);
   };
 
   render() {
@@ -122,7 +132,9 @@ class Product extends React.Component {
                         {findPriceInSelectedCurrency(this.props.selectedCurrency, product.prices)}
                       </ProductPrice>
                     </ProductOptions>
-                    <AddToCartButton>Add to cart</AddToCartButton>
+                    <AddToCartButton onClick={() => this.addToCart(product.id, product.prices)}>
+                      Add to cart
+                    </AddToCartButton>
                     <ProductDescription
                       dangerouslySetInnerHTML={this.setHtml(product.description)}
                     ></ProductDescription>
@@ -139,4 +151,11 @@ class Product extends React.Component {
 
 const ProductWithParams = (props) => <Product {...props} params={useParams()} />;
 
-export default ProductWithParams;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProductToCart: (productToAdd) =>
+      dispatch({ type: 'addProductToCart', payload: { productToAdd } }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductWithParams);

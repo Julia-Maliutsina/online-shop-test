@@ -1,5 +1,9 @@
 export { default as arrowDownIcon } from './arrowDown.svg';
 export { default as arrowUpIcon } from './arrowUp.svg';
+export { default as arrowForwardIcon } from './arrowForward.svg';
+export { default as arrowBackIcon } from './arrowBack.svg';
 export { default as cartIcon } from './cart.svg';
 export { default as currencyIcon } from './currency.svg';
 export { default as logo } from './logo.svg';
+export { default as minusIcon } from './minus.svg';
+export { default as plusIcon } from './plus.svg';

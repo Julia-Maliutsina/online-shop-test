@@ -9,6 +9,7 @@ export const MenuWrapper = styled.div`
   padding: 29px 100px 0px 100px;
   z-index: 15;
   background: #fff;
+  box-shadow: 0 0px 7px 1px #e3e3e3;
 `;
 
 export const MenuCategories = styled.div`

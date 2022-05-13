@@ -5,11 +5,11 @@ export const PageWrapper = styled.div`
 `;
 
 export const Title = styled.p`
-  font-family: 'Raleway';
-  font-size: 42px;
+  font-family: ${(props) => (props.pagename === 'cart' ? 'Raleway-Bold' : 'Raleway')};
+  font-size: ${(props) => (props.pagename === 'cart' ? '32px' : '42px')};
   line-height: 67px;
   color: #1d1f22;
   margin-top: 0;
-  margin-bottom: 119px;
-  text-transform: capitalize;
+  margin-bottom: ${(props) => (props.pagename === 'cart' ? '55px' : '119px')};
+  text-transform: ${(props) => (props.pagename === 'cart' ? 'uppercase' : 'capitalize')};
 `;
