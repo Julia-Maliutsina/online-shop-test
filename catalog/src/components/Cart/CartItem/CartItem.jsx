@@ -1,10 +1,10 @@
 import React from 'react';
 import { Query } from '@apollo/react-components';
-import { connect } from 'react-redux';
 
 import PRODUCT_QUERY from 'api/getProduct';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
 import { arrowForwardIcon, arrowBackIcon, plusIcon, minusIcon } from 'images';
+import { addToCart, removeFromCart, changeAttributes, changeQuantity } from 'store/actions';
 
 import {
   CartItemWrapper,
@@ -38,39 +38,31 @@ class CartItem extends React.Component {
         selectedAttributes: this.state.selectedAttributes,
         quantity: 1,
       };
-      this.props.addProductToCart(productToAdd);
+      addToCart(productToAdd);
+      return;
     }
     const newQuantity = this.state.quantity + 1;
     this.setState({ quantity: newQuantity });
+    changeQuantity(this.props.productId, this.state.selectedAttributes, newQuantity);
   };
 
   decreaseQuantity = () => {
-    if (this.state.quantity >= 1) {
+    if (this.state.quantity > 1) {
       const newQuantity = this.state.quantity - 1;
       this.setState({ quantity: newQuantity });
+      changeQuantity(this.props.productId, this.state.selectedAttributes, newQuantity);
     }
     if (this.state.quantity === 1) {
-      this.props.removeProduct(this.props.productId);
+      this.setState({ quantity: 0 });
+      removeFromCart(this.props.productId, this.state.selectedAttributes);
     }
   };
 
-  selectAttribute = (attributeToSelect, attributeName) => {
-    const newSelectedAttributes = this.state.selectedAttributes;
-    if (!newSelectedAttributes.length) {
-      newSelectedAttributes[attributeName] = attributeToSelect;
-      this.setState({ selectedAttributes: newSelectedAttributes });
-      return;
-    }
-    for (let i = 0; i <= this.state.selectedAttributes.length; i++) {
-      if (
-        this.state.selectedAttributes[i][attributeName] ||
-        i === this.state.selectedAttributes.length
-      ) {
-        newSelectedAttributes[i][attributeName] = attributeToSelect;
-        this.setState({ selectedAttributes: newSelectedAttributes });
-        break;
-      }
-    }
+  selectAttribute = (newAttribute, attributeName) => {
+    let newSelectedAttributes = JSON.parse(JSON.stringify(this.state.selectedAttributes));
+    newSelectedAttributes[attributeName] = newAttribute;
+    changeAttributes(this.props.productId, this.state.selectedAttributes, newSelectedAttributes);
+    this.setState({ selectedAttributes: newSelectedAttributes });
   };
 
   changeActiveImage = (change, maxLength) => {
@@ -135,11 +127,11 @@ class CartItem extends React.Component {
               </ProductInfo>
               <Quantity>
                 <ChangeQuantity onClick={() => this.increaseQuantity()}>
-                  <img src={plusIcon} />
+                  <img alt="more" src={plusIcon} />
                 </ChangeQuantity>
                 <QuantityNumber>{this.state.quantity}</QuantityNumber>
                 <ChangeQuantity onClick={() => this.decreaseQuantity()}>
-                  <img src={minusIcon} />
+                  <img alt="less" src={minusIcon} />
                 </ChangeQuantity>
               </Quantity>
               <ProductImage imageUrl={product.gallery[this.state.activeImage]}>
@@ -160,13 +152,4 @@ class CartItem extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    removeProduct: (productIdToRemove) =>
-      dispatch({ type: 'removeProductFromCart', payload: { productIdToRemove } }),
-    addProductToCart: (productToAdd) =>
-      dispatch({ type: 'addProductToCart', payload: { productToAdd } }),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(CartItem);
+export default CartItem;

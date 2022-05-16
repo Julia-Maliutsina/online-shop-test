@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
+import { connect } from 'react-redux';
 
 import CATEGORIES_QUERY from 'api/getCategories';
 import CURRENCIES_QUERY from 'api/getCurrencies';
@@ -13,6 +14,7 @@ import {
   Actions,
   Currency,
   Cart,
+  CartBadge,
   Arrow,
   CurrencyButton,
   CartButton,
@@ -68,6 +70,9 @@ class Menu extends React.Component {
             <Link to="/cart">
               <CartButton>
                 <Cart src={cartIcon} />
+                {this.props.quantityInCart > 0 && (
+                  <CartBadge>{this.props.quantityInCart}</CartBadge>
+                )}
               </CartButton>
             </Link>
           </Actions>
@@ -81,4 +86,11 @@ class Menu extends React.Component {
   }
 }
 
-export default Menu;
+const mapStateToProps = function (state) {
+  return {
+    productsInCart: state.productsInCart,
+    quantityInCart: state.quantityInCart,
+  };
+};
+
+export default connect(mapStateToProps)(Menu);

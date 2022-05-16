@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
-import { connect } from 'react-redux';
 
 import Layout from 'components/Layout';
 import PRODUCT_QUERY from 'api/getProduct';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
+import { addToCart } from 'store/actions';
 
 import {
   ProductWrapper,
@@ -39,31 +39,17 @@ class Product extends React.Component {
 
   selectAttribute = (attributeToSelect, attributeName) => {
     const newSelectedAttributes = this.state.selectedAttributes;
-    if (!newSelectedAttributes.length) {
-      newSelectedAttributes[attributeName] = attributeToSelect;
-      this.setState({ selectedAttributes: newSelectedAttributes });
-      return;
-    }
-    for (let i = 0; i <= this.state.selectedAttributes.length; i++) {
-      if (
-        this.state.selectedAttributes[i][attributeName] ||
-        i === this.state.selectedAttributes.length
-      ) {
-        newSelectedAttributes[i][attributeName] = attributeToSelect;
-        this.setState({ selectedAttributes: newSelectedAttributes });
-        break;
-      }
-    }
+    newSelectedAttributes[attributeName] = attributeToSelect;
+    this.setState({ selectedAttributes: newSelectedAttributes });
   };
 
-  addToCart = (id, prices) => {
+  addProductToCart = (id, prices) => {
     const productToAdd = {
       id: id,
       prices: prices,
       selectedAttributes: this.state.selectedAttributes,
-      quantity: 1,
     };
-    this.props.addProductToCart(productToAdd);
+    addToCart(productToAdd);
   };
 
   render() {
@@ -132,7 +118,13 @@ class Product extends React.Component {
                         {findPriceInSelectedCurrency(this.props.selectedCurrency, product.prices)}
                       </ProductPrice>
                     </ProductOptions>
-                    <AddToCartButton onClick={() => this.addToCart(product.id, product.prices)}>
+                    <AddToCartButton
+                      disabled={
+                        product.attributes.length !==
+                        Object.keys(this.state.selectedAttributes).length
+                      }
+                      onClick={() => this.addProductToCart(product.id, product.prices)}
+                    >
                       Add to cart
                     </AddToCartButton>
                     <ProductDescription
@@ -151,11 +143,4 @@ class Product extends React.Component {
 
 const ProductWithParams = (props) => <Product {...props} params={useParams()} />;
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addProductToCart: (productToAdd) =>
-      dispatch({ type: 'addProductToCart', payload: { productToAdd } }),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(ProductWithParams);
+export default ProductWithParams;

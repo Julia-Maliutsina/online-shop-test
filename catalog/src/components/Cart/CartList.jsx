@@ -11,9 +11,9 @@ class CartList extends React.Component {
   render() {
     return (
       <div>
-        {this.props.productsInCart.map((product) => (
+        {this.props.productsInCart.map((product, id) => (
           <CartItem
-            key={product.id}
+            key={id}
             productId={product.id}
             currency={this.props.currency}
             currencySymbol={this.props.currencySymbol}
@@ -32,12 +32,7 @@ class CartList extends React.Component {
           </OrderInfoBlock>
           <OrderInfoBlock>
             <OrderInfoTitle>Quantity:</OrderInfoTitle>
-            <OrderInfoNumber>
-              {this.props.productsInCart.reduce(
-                (quantity, product) => quantity + product.quantity,
-                0,
-              )}
-            </OrderInfoNumber>
+            <OrderInfoNumber>{this.props.quantityInCart}</OrderInfoNumber>
           </OrderInfoBlock>
           <OrderInfoBlock>
             <OrderInfoTitle>Total:</OrderInfoTitle>
@@ -56,6 +51,7 @@ class CartList extends React.Component {
 const mapStateToProps = function (state) {
   return {
     productsInCart: state.productsInCart,
+    quantityInCart: state.quantityInCart,
   };
 };
 
