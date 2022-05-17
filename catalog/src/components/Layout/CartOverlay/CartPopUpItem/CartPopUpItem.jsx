@@ -45,8 +45,8 @@ class CartPopUpItem extends React.Component {
                     {findPriceInSelectedCurrency(this.props.currency, product.prices)}
                   </ProductPrice>
                 </ProductOptions>
-                {product.attributes.map((attribute) => (
-                  <ProductOptions key={attribute.id}>
+                {product.attributes.map((attribute, id) => (
+                  <ProductOptions key={attribute.id + id}>
                     <ProductOptionsTitle>{attribute.name}</ProductOptionsTitle>
                     {attribute.type === ATTRIBUTE_TYPE.text
                       ? attribute.items.map((item) => (
@@ -59,6 +59,7 @@ class CartPopUpItem extends React.Component {
                         ))
                       : attribute.items.map((item) => (
                           <ProductSwatchOption
+                            key={item.id}
                             color={item.value}
                             selected={this.props.selectedAttributes[attribute.name] === item.value}
                           />

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
 import { addToCartIcon } from 'images';
 
-import { ItemWrapper, ItemImage, ItemName, ItemPrice, AddToCart } from './styled';
+import { ItemWrapper, ItemImage, ItemName, ItemPrice, AddToCart, OutOfStock } from './styled';
 
 class CatalogItem extends React.Component {
   render() {
@@ -12,7 +12,8 @@ class CatalogItem extends React.Component {
       <Link to={`/${this.props.category}/:${this.props.product.id}`}>
         <ItemWrapper>
           <ItemImage imageUrl={this.props.product.gallery[0]}>
-            {!this.props.product.attributes.length && (
+            {!this.props.product.inStock && <OutOfStock>Out of stock</OutOfStock>}
+            {!this.props.product.attributes.length && this.props.product.inStock && (
               <AddToCart
                 src={addToCartIcon}
                 alt="add to cart"

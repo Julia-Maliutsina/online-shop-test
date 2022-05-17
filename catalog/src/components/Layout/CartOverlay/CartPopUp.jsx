@@ -22,7 +22,7 @@ import {
 class CartPopUp extends React.Component {
   render() {
     return (
-      <CartPopUpList display={this.props.display}>
+      <CartPopUpList display={this.props.display.toString()}>
         {this.props.quantityInCart > 0 ? (
           <div>
             <CartPopUpTitle>My Bag, {this.props.quantityInCart} </CartPopUpTitle>

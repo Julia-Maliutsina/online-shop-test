@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CartPopUpList = styled.div`
-  display: ${(props) => (props.display ? 'block' : 'none')};
+  display: ${(props) => (props.display === 'true' ? 'block' : 'none')};
   height: content-fit;
   max-height: calc(100vh - 90px);
   width: 325px;

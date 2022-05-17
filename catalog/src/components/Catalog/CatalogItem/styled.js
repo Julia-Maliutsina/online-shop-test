@@ -38,10 +38,26 @@ export const ItemPrice = styled.div`
 
 export const AddToCart = styled.img`
   position: absolute;
-  z-index: 10;
+  z-index: 5;
   bottom: -37px;
   right: 10px;
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const OutOfStock = styled.div`
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 444px;
+  background: #ffffff;
+  opacity: 0.5;
+  text-align: center;
+  padding: 150px 0;
+  color: #8d8f9a;
+  font-family: Raleway;
+  font-size: 24px;
+  line-height: 38px;
+  text-transform: uppercase;
 `;

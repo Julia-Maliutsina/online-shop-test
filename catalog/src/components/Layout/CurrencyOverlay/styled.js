@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CurrencySelector = styled.div`
-  display: ${(props) => (props.display ? 'block' : 'none')};
+  display: ${(props) => (props.display === 'true' ? 'block' : 'none')};
   position: absolute;
   width: 114px;
   height: 170px;

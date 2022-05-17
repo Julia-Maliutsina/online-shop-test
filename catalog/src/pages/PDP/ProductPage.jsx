@@ -47,6 +47,7 @@ class Product extends React.Component {
                   <ProductGallery>
                     {product.gallery.map((image, index) => (
                       <ProductGalleryItem
+                        key={index}
                         imageUrl={image}
                         onClick={() => this.props.selectImage(index)}
                       />
@@ -56,8 +57,8 @@ class Product extends React.Component {
                   <ProductInfo>
                     <ProductBrand>{product.brand}</ProductBrand>
                     <ProductName>{product.name}</ProductName>
-                    {product.attributes.map((attribute) => (
-                      <ProductOptions key={attribute.id}>
+                    {product.attributes.map((attribute, id) => (
+                      <ProductOptions key={attribute.id + id}>
                         <ProductOptionsTitle>{attribute.name}</ProductOptionsTitle>
                         {attribute.type === 'text'
                           ? attribute.items.map((item) => (
@@ -93,15 +94,17 @@ class Product extends React.Component {
                         {findPriceInSelectedCurrency(this.props.selectedCurrency, product.prices)}
                       </ProductPrice>
                     </ProductOptions>
-                    <AddToCartButton
-                      disabled={
-                        product.attributes.length !==
-                        Object.keys(this.props.selectedAttributes).length
-                      }
-                      onClick={() => this.props.addProductToCart(product.id, product.prices)}
-                    >
-                      Add to cart
-                    </AddToCartButton>
+                    {product.inStock && (
+                      <AddToCartButton
+                        disabled={
+                          product.attributes.length !==
+                          Object.keys(this.props.selectedAttributes).length
+                        }
+                        onClick={() => this.props.addProductToCart(product.id, product.prices)}
+                      >
+                        Add to cart
+                      </AddToCartButton>
+                    )}
                     <ProductDescription
                       dangerouslySetInnerHTML={this.props.setHtml(product.description)}
                     ></ProductDescription>

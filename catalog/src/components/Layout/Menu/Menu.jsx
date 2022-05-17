@@ -35,7 +35,7 @@ class Menu extends React.Component {
                   if (loading) return 'Loading...';
                   const { categories } = data;
                   return categories.map((category) => (
-                    <Link to={`/${category.name}`}>
+                    <Link key={category.name} to={`/${category.name}`}>
                       <MenuCategory selected={this.props.pagename === category.name}>
                         {category.name}
                       </MenuCategory>
@@ -67,7 +67,7 @@ class Menu extends React.Component {
           </Actions>
         </MenuWrapper>
         <CoverLayer
-          display={this.props.isCurrencyOpened || this.props.isCartOpened}
+          display={(this.props.isCurrencyOpened || this.props.isCartOpened).toString()}
           onClick={() => this.props.closePopUps()}
         />
       </div>

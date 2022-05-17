@@ -103,11 +103,11 @@ export const CartBadge = styled.div`
 `;
 
 export const CoverLayer = styled.div`
-  display: ${(props) => (props.display ? 'block' : 'none')};
+  display: ${(props) => (props.display === 'true' ? 'block' : 'none')};
   position: fixed;
   right: 0;
   top: 80px;
-  z-index: 1;
+  z-index: 10;
   width: 100%;
   height: calc(100% - 80px);
   background: #39374838;
