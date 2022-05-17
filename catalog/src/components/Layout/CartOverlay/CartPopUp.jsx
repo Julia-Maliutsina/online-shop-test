@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { countFinalPrice } from 'utils/countFinalPrice';
 import { TAX } from 'constants/tax';
+import { EMPTY_CART } from 'constants/messages';
 
 import { CartPopUpItem } from './CartPopUpItem';
 import {
@@ -54,7 +55,7 @@ class CartPopUp extends React.Component {
             <CheckOutButton>Check Out</CheckOutButton>
           </div>
         ) : (
-          <CartPopUpTitle>Cart is empty</CartPopUpTitle>
+          <CartPopUpTitle>{EMPTY_CART}</CartPopUpTitle>
         )}
       </CartPopUpList>
     );

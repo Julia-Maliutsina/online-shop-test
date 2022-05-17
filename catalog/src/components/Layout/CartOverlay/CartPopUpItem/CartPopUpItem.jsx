@@ -52,7 +52,6 @@ class CartPopUpItem extends React.Component {
                       ? attribute.items.map((item) => (
                           <ProductTextOption
                             key={item.id}
-                            onClick={() => this.props.selectAttribute(item.value, attribute.name)}
                             selected={this.props.selectedAttributes[attribute.name] === item.value}
                           >
                             {item.value}
@@ -62,7 +61,6 @@ class CartPopUpItem extends React.Component {
                           <ProductSwatchOption
                             color={item.value}
                             selected={this.props.selectedAttributes[attribute.name] === item.value}
-                            onClick={() => this.props.selectAttribute(item.value, attribute.name)}
                           />
                         ))}
                   </ProductOptions>

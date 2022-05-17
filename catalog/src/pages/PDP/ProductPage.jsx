@@ -15,8 +15,8 @@ import {
   ProductName,
   ProductBrand,
   ProductOptions,
-  ProductSizesOption,
-  ProductColorsOption,
+  ProductTextOption,
+  ProductSwatchOption,
   ProductOptionsTitle,
   ProductDescription,
   ProductPrice,
@@ -61,7 +61,7 @@ class Product extends React.Component {
                         <ProductOptionsTitle>{attribute.name}</ProductOptionsTitle>
                         {attribute.type === 'text'
                           ? attribute.items.map((item) => (
-                              <ProductSizesOption
+                              <ProductTextOption
                                 key={item.id}
                                 onClick={() =>
                                   this.props.selectAttribute(item.value, attribute.name)
@@ -71,10 +71,10 @@ class Product extends React.Component {
                                 }
                               >
                                 {item.value}
-                              </ProductSizesOption>
+                              </ProductTextOption>
                             ))
                           : attribute.items.map((item) => (
-                              <ProductColorsOption
+                              <ProductSwatchOption
                                 color={item.value}
                                 selected={
                                   this.props.selectedAttributes[attribute.name] === item.value
@@ -103,7 +103,7 @@ class Product extends React.Component {
                       Add to cart
                     </AddToCartButton>
                     <ProductDescription
-                      dangerouslySetInnerHTML={this.setHtml(product.description)}
+                      dangerouslySetInnerHTML={this.props.setHtml(product.description)}
                     ></ProductDescription>
                   </ProductInfo>
                 </>

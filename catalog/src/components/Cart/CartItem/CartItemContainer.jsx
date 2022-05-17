@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { removeFromCart, changeAttributes, changeQuantity } from 'store/actions';
+import { removeFromCart, changeQuantity } from 'store/actions';
 
 import CartItem from './CartItem';
 
@@ -28,13 +28,6 @@ class CartItemContainer extends React.Component {
     }
   };
 
-  selectAttribute = (newAttribute, attributeName) => {
-    let newSelectedAttributes = JSON.parse(JSON.stringify(this.state.selectedAttributes));
-    newSelectedAttributes[attributeName] = newAttribute;
-    changeAttributes(this.props.productId, this.state.selectedAttributes, newSelectedAttributes);
-    this.setState({ selectedAttributes: newSelectedAttributes });
-  };
-
   changeActiveImage = (change, maxLength) => {
     if (this.state.activeImage === maxLength && change === 1) {
       const newActiveImage = 0;
@@ -59,7 +52,6 @@ class CartItemContainer extends React.Component {
         selectedAttributes={this.state.selectedAttributes}
         increaseQuantity={this.increaseQuantity}
         decreaseQuantity={this.decreaseQuantity}
-        selectAttribute={this.selectAttribute}
         changeActiveImage={this.changeActiveImage}
         currency={this.props.currency}
         currencySymbol={this.props.currencySymbol}

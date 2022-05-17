@@ -48,11 +48,6 @@ export const ProductTextOption = styled.div`
   &:not(:last-child) {
     margin-right: 12px;
   }
-  &:hover {
-    cursor: pointer;
-    background-color: #1d1f22;
-    color: #ffffff;
-  }
 `;
 
 export const ProductSwatchOption = styled.div`
@@ -68,10 +63,6 @@ export const ProductSwatchOption = styled.div`
   }
   &:not(:last-child) {
     margin-right: 8px;
-  }
-  &:hover {
-    cursor: pointer;
-    border: 1px solid #5ece7b;
   }
 `;
 

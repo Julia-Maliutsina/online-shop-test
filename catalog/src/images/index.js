@@ -9,3 +9,4 @@ export { default as minusIcon } from './minus.svg';
 export { default as plusIcon } from './plus.svg';
 export { default as minusIconMini } from './minusIconMini.svg';
 export { default as plusIconMini } from './plusIconMini.svg';
+export { default as addToCartIcon } from './addToCart.svg';

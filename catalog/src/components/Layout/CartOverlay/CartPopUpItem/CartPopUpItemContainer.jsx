@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { removeFromCart, changeAttributes, changeQuantity } from 'store/actions';
+import { removeFromCart, changeQuantity } from 'store/actions';
 
 import CartPopUpItem from './CartPopUpItem';
 
@@ -27,13 +27,6 @@ class CartPopUpItemContainer extends React.Component {
     }
   };
 
-  selectAttribute = (newAttribute, attributeName) => {
-    let newSelectedAttributes = JSON.parse(JSON.stringify(this.state.selectedAttributes));
-    newSelectedAttributes[attributeName] = newAttribute;
-    changeAttributes(this.props.productId, this.state.selectedAttributes, newSelectedAttributes);
-    this.setState({ selectedAttributes: newSelectedAttributes });
-  };
-
   render() {
     return (
       <CartPopUpItem
@@ -42,7 +35,6 @@ class CartPopUpItemContainer extends React.Component {
         selectedAttributes={this.state.selectedAttributes}
         increaseQuantity={this.increaseQuantity}
         decreaseQuantity={this.decreaseQuantity}
-        selectAttribute={this.selectAttribute}
         currency={this.props.currency}
         currencySymbol={this.props.currencySymbol}
       />

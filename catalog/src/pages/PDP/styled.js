@@ -85,7 +85,7 @@ export const ProductOptions = styled.div`
   line-height: 18px;
 `;
 
-export const ProductSizesOption = styled.div`
+export const ProductTextOption = styled.div`
   display: inline-block;
   min-width: 63px;
   height: 45px;
@@ -111,7 +111,7 @@ export const ProductSizesOption = styled.div`
   }
 `;
 
-export const ProductColorsOption = styled.div`
+export const ProductSwatchOption = styled.div`
   display: inline-block;
   margin-top: 6px;
   margin-bottom: 34px;

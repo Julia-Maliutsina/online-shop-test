@@ -15,6 +15,9 @@ const CATEGORY_QUERY = gql`
             symbol
           }
         }
+        attributes {
+          id
+        }
         inStock
       }
     }

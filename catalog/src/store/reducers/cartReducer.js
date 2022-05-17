@@ -30,15 +30,6 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
         quantityInCart: action.payload.newQuantity,
         productsInCart: productsWithQuantityChanges,
       };
-    case 'changeProductAttributes':
-      let productsWithAttributeChanges = state.productsInCart;
-      productsWithAttributeChanges[action.payload.productToChange].selectedAttributes =
-        action.payload.newAttributes;
-      console.log('attr changed');
-      return {
-        quantityInCart: state.quantityInCart,
-        productsInCart: productsWithAttributeChanges,
-      };
     default:
       return state;
   }

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import CATEGORIES_QUERY from 'api/getCategories';
 
-import { CurrencyPopUp } from '../CurrencyPopUp';
-import { CartPopUp } from '../CartPopUp';
+import { CurrencyPopUp } from '../CurrencyOverlay';
+import { CartPopUp } from '../CartOverlay';
 
 import {
   MenuWrapper,
