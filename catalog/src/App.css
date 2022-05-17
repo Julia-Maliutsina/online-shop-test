@@ -42,6 +42,11 @@ a {
 }
 
 @font-face {
+  font-family: Roboto-Medium;
+  src: url('../src/fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
   font-family: RobotoCondensed-Bold;
   src: url('../src/fonts/RobotoCondensed-Bold.ttf');
 }

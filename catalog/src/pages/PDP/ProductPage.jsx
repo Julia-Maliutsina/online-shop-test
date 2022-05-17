@@ -2,10 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
 
-import Layout from 'components/Layout';
+import { Layout } from 'components/Layout';
 import PRODUCT_QUERY from 'api/getProduct';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
-import { addToCart } from 'store/actions';
 
 import {
   ProductWrapper,
@@ -24,34 +23,6 @@ import {
   AddToCartButton,
 } from './styled';
 class Product extends React.Component {
-  state = {
-    selectedImage: 0,
-    selectedAttributes: {},
-  };
-
-  selectImage = (imageIndex) => {
-    this.setState({ selectedImage: imageIndex });
-  };
-
-  setHtml = (html) => {
-    return { __html: html };
-  };
-
-  selectAttribute = (attributeToSelect, attributeName) => {
-    const newSelectedAttributes = this.state.selectedAttributes;
-    newSelectedAttributes[attributeName] = attributeToSelect;
-    this.setState({ selectedAttributes: newSelectedAttributes });
-  };
-
-  addProductToCart = (id, prices) => {
-    const productToAdd = {
-      id: id,
-      prices: prices,
-      selectedAttributes: this.state.selectedAttributes,
-    };
-    addToCart(productToAdd);
-  };
-
   render() {
     return (
       <Layout
@@ -77,11 +48,11 @@ class Product extends React.Component {
                     {product.gallery.map((image, index) => (
                       <ProductGalleryItem
                         imageUrl={image}
-                        onClick={() => this.selectImage(index)}
+                        onClick={() => this.props.selectImage(index)}
                       />
                     ))}
                   </ProductGallery>
-                  <ProductImage imageUrl={product.gallery[this.state.selectedImage]} />
+                  <ProductImage imageUrl={product.gallery[this.props.selectedImage]} />
                   <ProductInfo>
                     <ProductBrand>{product.brand}</ProductBrand>
                     <ProductName>{product.name}</ProductName>
@@ -92,9 +63,11 @@ class Product extends React.Component {
                           ? attribute.items.map((item) => (
                               <ProductSizesOption
                                 key={item.id}
-                                onClick={() => this.selectAttribute(item.value, attribute.name)}
+                                onClick={() =>
+                                  this.props.selectAttribute(item.value, attribute.name)
+                                }
                                 selected={
-                                  this.state.selectedAttributes[attribute.name] === item.value
+                                  this.props.selectedAttributes[attribute.name] === item.value
                                 }
                               >
                                 {item.value}
@@ -104,9 +77,11 @@ class Product extends React.Component {
                               <ProductColorsOption
                                 color={item.value}
                                 selected={
-                                  this.state.selectedAttributes[attribute.name] === item.value
+                                  this.props.selectedAttributes[attribute.name] === item.value
                                 }
-                                onClick={() => this.selectAttribute(item.value, attribute.name)}
+                                onClick={() =>
+                                  this.props.selectAttribute(item.value, attribute.name)
+                                }
                               />
                             ))}
                       </ProductOptions>
@@ -121,9 +96,9 @@ class Product extends React.Component {
                     <AddToCartButton
                       disabled={
                         product.attributes.length !==
-                        Object.keys(this.state.selectedAttributes).length
+                        Object.keys(this.props.selectedAttributes).length
                       }
-                      onClick={() => this.addProductToCart(product.id, product.prices)}
+                      onClick={() => this.props.addProductToCart(product.id, product.prices)}
                     >
                       Add to cart
                     </AddToCartButton>

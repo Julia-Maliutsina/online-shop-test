@@ -14,17 +14,17 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
       };
     case 'removeProductFromCart':
       let products = state.productsInCart;
-      let quantityToDecrease = state.quantityInCart;
       products.splice(action.payload.productToRemove, 1);
       console.log('remove called');
       return {
-        quantityInCart: quantityToDecrease - 1,
+        quantityInCart: action.payload.quantityInCart,
         productsInCart: products,
       };
     case 'changeProductQuantity':
       let productsWithQuantityChanges = state.productsInCart;
       productsWithQuantityChanges[action.payload.productToChange].quantity =
         action.payload.newProductQuantity;
+      console.log(productsWithQuantityChanges[action.payload.productToChange]);
       console.log('quantity changed');
       return {
         quantityInCart: action.payload.newQuantity,

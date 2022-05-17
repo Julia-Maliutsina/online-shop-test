@@ -4,31 +4,19 @@ import Menu from './Menu';
 import { PageWrapper, Title } from './styled';
 
 class Layout extends React.Component {
-  state = {
-    isCurrencyOpened: false,
-  };
-
-  openCurrency = () => {
-    this.setState({ isCurrencyOpened: !this.state.isCurrencyOpened });
-  };
-
-  selectCurrency = (currencyToSelect, currencySymbolToSelect) => {
-    this.props.selectCurrency(currencyToSelect, currencySymbolToSelect);
-    this.setState({
-      isCurrencyOpened: false,
-    });
-  };
-
   render() {
     return (
       <div>
         <Menu
           pagename={this.props.pagename}
-          isCurrencyOpened={this.state.isCurrencyOpened}
+          isCurrencyOpened={this.props.isCurrencyOpened}
           selectedCurrency={this.props.selectedCurrency}
-          openCurrency={this.openCurrency}
-          selectCurrency={this.selectCurrency}
+          toggleCurrency={this.props.toggleCurrency}
+          selectCurrency={this.props.selectCurrency}
           selectedCurrencySymbol={this.props.selectedCurrencySymbol}
+          toggleCart={this.props.toggleCart}
+          isCartOpened={this.props.isCartOpened}
+          closePopUps={this.props.closePopUps}
         />
         <PageWrapper>
           {!this.props.disableTitle && (

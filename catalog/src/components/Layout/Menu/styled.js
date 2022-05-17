@@ -12,6 +12,11 @@ export const MenuWrapper = styled.div`
   box-shadow: 0 0px 7px 1px #e3e3e3;
 `;
 
+export const SpaceHolder = styled.div`
+  flex-grow: 2;
+  flex-shrink: 1;
+`;
+
 export const MenuCategories = styled.div`
   width: 234px;
   font-family: 'Raleway';
@@ -48,12 +53,24 @@ export const Actions = styled.div`
   text-align: right;
 `;
 
+export const Arrow = styled.img`
+  vertical-align: middle;
+  margin-left: 8px;
+`;
+
 export const CurrencyButton = styled.div`
   display: inline-block;
   width: 40px;
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const Currency = styled.span`
+  font-family: Raleway-Medium;
+  font-size: 18px;
+  line-height: 29px;
+  text-align: left;
 `;
 
 export const CartButton = styled.div`
@@ -83,50 +100,6 @@ export const CartBadge = styled.div`
   line-height: 16px;
   text-align: center;
   padding-top: 2px;
-`;
-
-export const Currency = styled.span`
-  font-family: Raleway-Medium;
-  font-size: 18px;
-  line-height: 29px;
-  text-align: left;
-`;
-
-export const Arrow = styled.img`
-  vertical-align: middle;
-  margin-left: 8px;
-`;
-
-export const SpaceHolder = styled.div`
-  flex-grow: 2;
-  flex-shrink: 1;
-`;
-
-export const CurrencySelector = styled.div`
-  display: ${(props) => (props.display ? 'block' : 'none')};
-  position: absolute;
-  width: 114px;
-  height: 170px;
-  background: #ffffff;
-  padding: 15px 0;
-  right: 85px;
-  box-shadow: 0px 4px 35px 0px #a8acb030;
-`;
-
-export const CurrencyOption = styled.div`
-  text-align: left;
-  height: 45px;
-  width: 100%;
-  padding: 8px 20px;
-  font-family: Raleway-Medium;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 29px;
-  background: ${(props) => (props.selected ? '#eeeeee' : '#ffffff')};
-  &:hover {
-    background: #eeeeee;
-    cursor: pointer;
-  }
 `;
 
 export const CoverLayer = styled.div`

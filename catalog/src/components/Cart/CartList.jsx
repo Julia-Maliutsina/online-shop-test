@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { countTax } from 'utils/countTax';
 import { countFinalPrice } from 'utils/countFinalPrice';
+import { TAX } from 'constants/tax';
 
 import { CartItem } from './CartItem';
 import { OrderInfo, OrderInfoBlock, OrderButton, OrderInfoTitle, OrderInfoNumber } from './styled';
@@ -13,7 +14,7 @@ class CartList extends React.Component {
       <div>
         {this.props.productsInCart.map((product, id) => (
           <CartItem
-            key={id}
+            key={product.id + id}
             productId={product.id}
             currency={this.props.currency}
             currencySymbol={this.props.currencySymbol}
@@ -27,7 +28,7 @@ class CartList extends React.Component {
             <OrderInfoTitle>Tax 21%:</OrderInfoTitle>
             <OrderInfoNumber>
               {this.props.currencySymbol}
-              {countTax(this.props.productsInCart, this.props.currency, 21)}
+              {countTax(this.props.productsInCart, this.props.currency, TAX)}
             </OrderInfoNumber>
           </OrderInfoBlock>
           <OrderInfoBlock>
@@ -38,7 +39,7 @@ class CartList extends React.Component {
             <OrderInfoTitle>Total:</OrderInfoTitle>
             <OrderInfoNumber>
               {this.props.currencySymbol}
-              {countFinalPrice(this.props.productsInCart, this.props.currency, 21)}
+              {countFinalPrice(this.props.productsInCart, this.props.currency, TAX)}
             </OrderInfoNumber>
           </OrderInfoBlock>
           <OrderButton>Order</OrderButton>

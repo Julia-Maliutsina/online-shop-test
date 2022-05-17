@@ -13,7 +13,7 @@ const addToCart = (productToAdd) => {
         JSON.stringify(productToAdd.selectedAttributes)
     ) {
       indexOfProductInCart = p;
-      productQuantity = productsInCart[indexOfProductInCart].quantity;
+      productQuantity = productsInCart[p].quantity;
       break;
     }
   }
