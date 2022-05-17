@@ -172,4 +172,8 @@ export const AddToCartButton = styled.button`
     background: #1d1f22;
     cursor: pointer;
   }
+  &:disabled {
+    background: #ddd;
+    cursor: auto;
+  }
 `;

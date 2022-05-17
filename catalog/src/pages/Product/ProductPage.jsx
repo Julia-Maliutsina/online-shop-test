@@ -5,6 +5,7 @@ import { Query } from '@apollo/react-components';
 import Layout from 'components/Layout';
 import PRODUCT_QUERY from 'api/getProduct';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
+import { addToCart } from 'store/actions';
 
 import {
   ProductWrapper,
@@ -38,22 +39,17 @@ class Product extends React.Component {
 
   selectAttribute = (attributeToSelect, attributeName) => {
     const newSelectedAttributes = this.state.selectedAttributes;
-    if (!newSelectedAttributes.length) {
-      newSelectedAttributes[attributeName] = attributeToSelect;
-      console.log(newSelectedAttributes);
-      this.setState({ selectedAttributes: newSelectedAttributes });
-      return;
-    }
-    for (let i = 0; i <= this.state.selectedAttributes.length; i++) {
-      if (
-        this.state.selectedAttributes[i][attributeName] ||
-        i === this.state.selectedAttributes.length
-      ) {
-        newSelectedAttributes[i][attributeName] = attributeToSelect;
-        this.setState({ selectedAttributes: newSelectedAttributes });
-        break;
-      }
-    }
+    newSelectedAttributes[attributeName] = attributeToSelect;
+    this.setState({ selectedAttributes: newSelectedAttributes });
+  };
+
+  addProductToCart = (id, prices) => {
+    const productToAdd = {
+      id: id,
+      prices: prices,
+      selectedAttributes: this.state.selectedAttributes,
+    };
+    addToCart(productToAdd);
   };
 
   render() {
@@ -122,7 +118,15 @@ class Product extends React.Component {
                         {findPriceInSelectedCurrency(this.props.selectedCurrency, product.prices)}
                       </ProductPrice>
                     </ProductOptions>
-                    <AddToCartButton>Add to cart</AddToCartButton>
+                    <AddToCartButton
+                      disabled={
+                        product.attributes.length !==
+                        Object.keys(this.state.selectedAttributes).length
+                      }
+                      onClick={() => this.addProductToCart(product.id, product.prices)}
+                    >
+                      Add to cart
+                    </AddToCartButton>
                     <ProductDescription
                       dangerouslySetInnerHTML={this.setHtml(product.description)}
                     ></ProductDescription>

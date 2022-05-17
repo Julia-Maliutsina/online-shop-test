@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
 
-import { CatalogPage, ProductPage } from 'pages';
+import { CatalogPage, ProductPage, CartPage } from 'pages';
 import CATEGORIES_QUERY from 'api/getCategories';
 
 import './App.css';
@@ -55,7 +55,17 @@ class App extends React.Component {
                     />
                   </Route>
                 ))}
-                ;
+                <Route
+                  path={`/cart`}
+                  element={
+                    <CartPage
+                      pagename="cart"
+                      selectedCurrency={this.state.selectedCurrency}
+                      selectedCurrencySymbol={this.state.selectedCurrencySymbol}
+                      selectCurrency={this.selectCurrency}
+                    />
+                  }
+                />
               </Routes>
             );
           }}

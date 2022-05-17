@@ -9,6 +9,7 @@ export const MenuWrapper = styled.div`
   padding: 29px 100px 0px 100px;
   z-index: 15;
   background: #fff;
+  box-shadow: 0 0px 7px 1px #e3e3e3;
 `;
 
 export const MenuCategories = styled.div`
@@ -57,12 +58,31 @@ export const CurrencyButton = styled.div`
 
 export const CartButton = styled.div`
   display: inline-block;
+  position: relative;
   margin-left: 22px;
   margin-top: 6px;
   vertical-align: top;
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const Cart = styled.img``;
+
+export const CartBadge = styled.div`
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1d1f22;
+  color: #ffffff;
+  font-family: Roboto-Bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  padding-top: 2px;
 `;
 
 export const Currency = styled.span`
@@ -76,8 +96,6 @@ export const Arrow = styled.img`
   vertical-align: middle;
   margin-left: 8px;
 `;
-
-export const Cart = styled.img``;
 
 export const SpaceHolder = styled.div`
   flex-grow: 2;

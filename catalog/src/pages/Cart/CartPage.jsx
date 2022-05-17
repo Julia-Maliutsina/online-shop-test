@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Layout from 'components/Layout';
-import { Catalog } from 'components/Catalog';
+import CartList from 'components/Cart';
 
-class TechCatalog extends React.Component {
+class Cart extends React.Component {
   render() {
     return (
       <Layout
@@ -12,8 +13,7 @@ class TechCatalog extends React.Component {
         selectedCurrencySymbol={this.props.selectedCurrencySymbol}
         selectedCurrency={this.props.selectedCurrency}
       >
-        <Catalog
-          category={this.props.pagename}
+        <CartList
           currency={this.props.selectedCurrency}
           currencySymbol={this.props.selectedCurrencySymbol}
         />
@@ -22,4 +22,4 @@ class TechCatalog extends React.Component {
   }
 }
 
-export default TechCatalog;
+export default Cart;

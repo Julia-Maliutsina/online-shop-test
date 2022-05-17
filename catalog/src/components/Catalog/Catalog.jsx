@@ -19,7 +19,6 @@ class Catalog extends React.Component {
           {({ loading, data }) => {
             if (loading) return 'Loading...';
             const { products } = data.category;
-            console.log(products);
             return products.map((product) => (
               <CatalogItem
                 key={product.id}

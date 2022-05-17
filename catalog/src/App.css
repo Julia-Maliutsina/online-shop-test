@@ -45,3 +45,8 @@ a {
   font-family: RobotoCondensed-Bold;
   src: url('../src/fonts/RobotoCondensed-Bold.ttf');
 }
+
+@font-face {
+  font-family: Roboto-Bold;
+  src: url('../src/fonts/Roboto-Bold.ttf');
+}

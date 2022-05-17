@@ -1,7 +1,10 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+import store from 'store';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -16,7 +19,9 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,

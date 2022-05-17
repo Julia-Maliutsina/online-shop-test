@@ -31,7 +31,9 @@ class Layout extends React.Component {
           selectedCurrencySymbol={this.props.selectedCurrencySymbol}
         />
         <PageWrapper>
-          {!this.props.disableTitle && <Title>{this.props.pagename}</Title>}
+          {!this.props.disableTitle && (
+            <Title pagename={this.props.pagename}>{this.props.pagename}</Title>
+          )}
           {this.props.children}
         </PageWrapper>
       </div>
