@@ -1,4 +1,4 @@
-import store from 'store';
+import store from '../store';
 
 const addToCart = (productToAdd) => {
   const storeState = store.getState();
@@ -13,7 +13,7 @@ const addToCart = (productToAdd) => {
         JSON.stringify(productToAdd.selectedAttributes)
     ) {
       indexOfProductInCart = p;
-      productQuantity = productsInCart[indexOfProductInCart].quantity;
+      productQuantity = productsInCart[p].quantity;
       break;
     }
   }

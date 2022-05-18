@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Query } from '@apollo/react-components';
 
 import { CatalogPage, ProductPage, CartPage } from 'pages';
@@ -29,8 +29,9 @@ class App extends React.Component {
             const { categories } = data;
             return (
               <Routes>
+                <Route path="/" element={<Navigate replace to={categories[0].name} />} />
                 {categories.map((category) => (
-                  <Route path={category.name}>
+                  <Route path={category.name} key={category.name}>
                     <Route
                       index
                       element={

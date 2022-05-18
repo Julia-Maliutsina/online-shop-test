@@ -10,6 +10,7 @@ export const ItemWrapper = styled.div`
 `;
 
 export const ItemImage = styled.div`
+  position: relative;
   height: 338px;
   width: 356px;
   background-image: url(${(props) =>
@@ -33,4 +34,30 @@ export const ItemPrice = styled.div`
   font-size: 18px;
   line-height: 29px;
   color: #1d1f22;
+`;
+
+export const AddToCart = styled.img`
+  position: absolute;
+  z-index: 5;
+  bottom: -37px;
+  right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const OutOfStock = styled.div`
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 444px;
+  background: #ffffff;
+  opacity: 0.5;
+  text-align: center;
+  padding: 150px 0;
+  color: #8d8f9a;
+  font-family: Raleway;
+  font-size: 24px;
+  line-height: 38px;
+  text-transform: uppercase;
 `;

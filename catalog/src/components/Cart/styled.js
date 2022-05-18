@@ -43,3 +43,9 @@ export const OrderInfoNumber = styled.span`
   font-family: Raleway-Bold;
   min-width: 110px;
 `;
+
+export const EmptyCart = styled.div`
+  font-family: Raleway-Bold;
+  font-size: 16px;
+  text-align: left;
+`;

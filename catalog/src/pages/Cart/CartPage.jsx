@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import Layout from 'components/Layout';
-import CartList from 'components/Cart';
+import { Layout } from 'components/Layout';
+import { CartList } from 'components/Cart';
 
 class Cart extends React.Component {
   render() {

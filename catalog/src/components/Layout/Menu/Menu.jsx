@@ -4,7 +4,9 @@ import { Query } from '@apollo/react-components';
 import { connect } from 'react-redux';
 
 import CATEGORIES_QUERY from 'api/getCategories';
-import CURRENCIES_QUERY from 'api/getCurrencies';
+
+import { CurrencyPopUp } from '../CurrencyOverlay';
+import { CartPopUp } from '../CartOverlay';
 
 import {
   MenuWrapper,
@@ -12,14 +14,12 @@ import {
   MenuCategory,
   Logo,
   Actions,
+  Arrow,
   Currency,
+  CurrencyButton,
   Cart,
   CartBadge,
-  Arrow,
-  CurrencyButton,
   CartButton,
-  CurrencySelector,
-  CurrencyOption,
   CoverLayer,
 } from './styled';
 import { arrowDownIcon, arrowUpIcon, cartIcon, logo } from '../../../images';
@@ -35,7 +35,7 @@ class Menu extends React.Component {
                   if (loading) return 'Loading...';
                   const { categories } = data;
                   return categories.map((category) => (
-                    <Link to={`/${category.name}`}>
+                    <Link key={category.name} to={`/${category.name}`}>
                       <MenuCategory selected={this.props.pagename === category.name}>
                         {category.name}
                       </MenuCategory>
@@ -47,39 +47,28 @@ class Menu extends React.Component {
           </MenuCategories>
           <Logo src={logo} />
           <Actions>
-            <CurrencyButton onClick={() => this.props.openCurrency()}>
+            <CurrencyButton onClick={() => this.props.toggleCurrency()}>
               <Currency>{this.props.selectedCurrencySymbol}</Currency>
               <Arrow src={this.props.isCurrencyOpened ? arrowUpIcon : arrowDownIcon} />
             </CurrencyButton>
-            <CurrencySelector display={this.props.isCurrencyOpened}>
-              <Query query={CURRENCIES_QUERY}>
-                {({ loading, data }) => {
-                  if (loading) return 'Loading...';
-                  const { currencies } = data;
-                  return currencies.map((currency) => (
-                    <CurrencyOption
-                      selected={this.props.selectedCurrency === currency.label}
-                      onClick={() => this.props.selectCurrency(currency.label, currency.symbol)}
-                    >
-                      {currency.symbol} {currency.label}
-                    </CurrencyOption>
-                  ));
-                }}
-              </Query>
-            </CurrencySelector>
-            <Link to="/cart">
-              <CartButton>
-                <Cart src={cartIcon} />
-                {this.props.quantityInCart > 0 && (
-                  <CartBadge>{this.props.quantityInCart}</CartBadge>
-                )}
-              </CartButton>
-            </Link>
+            <CurrencyPopUp
+              display={this.props.isCurrencyOpened}
+              selectCurrency={this.props.selectCurrency}
+            />
+            <CartButton onClick={() => this.props.toggleCart()}>
+              <Cart src={cartIcon} />
+              {this.props.quantityInCart > 0 && <CartBadge>{this.props.quantityInCart}</CartBadge>}
+            </CartButton>
+            <CartPopUp
+              display={this.props.isCartOpened}
+              currency={this.props.selectedCurrency}
+              currencySymbol={this.props.selectedCurrencySymbol}
+            />
           </Actions>
         </MenuWrapper>
         <CoverLayer
-          display={this.props.isCurrencyOpened}
-          onClick={() => this.props.openCurrency()}
+          display={(this.props.isCurrencyOpened || this.props.isCartOpened).toString()}
+          onClick={() => this.props.closePopUps()}
         />
       </div>
     );
@@ -88,7 +77,6 @@ class Menu extends React.Component {
 
 const mapStateToProps = function (state) {
   return {
-    productsInCart: state.productsInCart,
     quantityInCart: state.quantityInCart,
   };
 };

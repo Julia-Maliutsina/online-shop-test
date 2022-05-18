@@ -3,7 +3,7 @@ import { Query } from '@apollo/react-components';
 
 import PRODUCT_QUERY from 'api/getProduct';
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
-import { arrowForwardIcon, arrowBackIcon, plusIcon, minusIcon } from 'images';
+import { plusIconMini, minusIconMini } from 'images';
 import { ATTRIBUTE_TYPE } from 'constants/attributes';
 
 import {
@@ -17,13 +17,12 @@ import {
   ProductPrice,
   ProductInfo,
   ProductImage,
-  Arrow,
   Quantity,
   ChangeQuantity,
   QuantityNumber,
 } from './styled';
 
-class CartItem extends React.Component {
+class CartPopUpItem extends React.Component {
   render() {
     return (
       <Query
@@ -70,27 +69,14 @@ class CartItem extends React.Component {
               </ProductInfo>
               <Quantity>
                 <ChangeQuantity onClick={() => this.props.increaseQuantity()}>
-                  <img alt="more" src={plusIcon} />
+                  <img alt="more" src={plusIconMini} />
                 </ChangeQuantity>
                 <QuantityNumber>{this.props.quantity}</QuantityNumber>
                 <ChangeQuantity onClick={() => this.props.decreaseQuantity()}>
-                  <img alt="less" src={minusIcon} />
+                  <img alt="less" src={minusIconMini} />
                 </ChangeQuantity>
               </Quantity>
-              <ProductImage imageUrl={product.gallery[this.props.activeImage]}>
-                {product.gallery.length > 1 && (
-                  <>
-                    <Arrow
-                      src={arrowBackIcon}
-                      onClick={() => this.props.changeActiveImage(-1, product.gallery.length - 1)}
-                    />
-                    <Arrow
-                      src={arrowForwardIcon}
-                      onClick={() => this.props.changeActiveImage(1, product.gallery.length - 1)}
-                    />
-                  </>
-                )}
-              </ProductImage>
+              <ProductImage imageUrl={product.gallery[0]} />
             </CartItemWrapper>
           );
         }}
@@ -99,4 +85,4 @@ class CartItem extends React.Component {
   }
 }
 
-export default CartItem;
+export default CartPopUpItem;
