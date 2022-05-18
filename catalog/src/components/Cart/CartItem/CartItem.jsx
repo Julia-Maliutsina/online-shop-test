@@ -49,22 +49,22 @@ class CartItem extends React.Component {
                 {product.attributes.map((attribute, id) => (
                   <ProductOptions key={attribute.id + id}>
                     <ProductOptionsTitle>{attribute.name}</ProductOptionsTitle>
-                    {attribute.type === ATTRIBUTE_TYPE.text
-                      ? attribute.items.map((item) => (
-                          <ProductTextOption
-                            key={item.id}
-                            selected={this.props.selectedAttributes[attribute.name] === item.value}
-                          >
-                            {item.value}
-                          </ProductTextOption>
-                        ))
-                      : attribute.items.map((item) => (
-                          <ProductSwatchOption
-                            key={item.id}
-                            color={item.value}
-                            selected={this.props.selectedAttributes[attribute.name] === item.value}
-                          />
-                        ))}
+                    {attribute.items.map((item) =>
+                      attribute.type === ATTRIBUTE_TYPE.text ? (
+                        <ProductTextOption
+                          key={item.id}
+                          selected={this.props.selectedAttributes[attribute.name] === item.value}
+                        >
+                          {item.value}
+                        </ProductTextOption>
+                      ) : (
+                        <ProductSwatchOption
+                          key={item.id}
+                          color={item.value}
+                          selected={this.props.selectedAttributes[attribute.name] === item.value}
+                        />
+                      ),
+                    )}
                   </ProductOptions>
                 ))}
               </ProductInfo>

@@ -5,6 +5,7 @@ import { countTax } from 'utils/countTax';
 import { countFinalPrice } from 'utils/countFinalPrice';
 import { TAX } from 'constants/tax';
 import { EMPTY_CART } from 'constants/messages';
+import { removeAllFromCart } from 'store/actions';
 
 import { CartItem } from './CartItem';
 import {
@@ -52,7 +53,7 @@ class CartList extends React.Component {
                   {countFinalPrice(this.props.productsInCart, this.props.currency, TAX)}
                 </OrderInfoNumber>
               </OrderInfoBlock>
-              <OrderButton>Order</OrderButton>
+              <OrderButton onClick={() => removeAllFromCart()}>Order</OrderButton>
             </OrderInfo>
           </>
         ) : (

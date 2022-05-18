@@ -26,6 +26,11 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
         quantityInCart: action.payload.newQuantity,
         productsInCart: productsWithQuantityChanges,
       };
+    case 'clearCart':
+      return {
+        quantityInCart: 0,
+        productsInCart: [],
+      };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import store from 'store';
+import store from '../store';
 
 const addToCart = (productToAdd) => {
   const storeState = store.getState();

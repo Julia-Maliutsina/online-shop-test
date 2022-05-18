@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { countFinalPrice } from 'utils/countFinalPrice';
+import { removeAllFromCart } from 'store/actions';
 import { TAX } from 'constants/tax';
 import { EMPTY_CART } from 'constants/messages';
 
@@ -52,7 +53,7 @@ class CartPopUp extends React.Component {
             <Link to="/cart">
               <ViewBagButton>View Bag</ViewBagButton>
             </Link>
-            <CheckOutButton>Check Out</CheckOutButton>
+            <CheckOutButton onClick={() => removeAllFromCart()}>Check Out</CheckOutButton>
           </div>
         ) : (
           <CartPopUpTitle>{EMPTY_CART}</CartPopUpTitle>
