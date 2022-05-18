@@ -39,7 +39,14 @@ class Product extends React.Component {
                     ))}
                   </ProductGallery>
                   <ProductImage imageUrl={product.gallery[this.props.selectedImage]} />
-                  <ProductInfo product={product} />
+                  <ProductInfo
+                    product={product}
+                    selectedCurrency={this.props.selectedCurrency}
+                    selectedCurrencySymbol={this.props.selectedCurrencySymbol}
+                    selectedAttributes={this.props.selectedAttributes}
+                    selectAttribute={this.props.selectAttribute}
+                    addProductToCart={this.props.addProductToCart}
+                  />
                 </>
               );
             }}

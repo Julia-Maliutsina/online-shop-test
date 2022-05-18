@@ -14,10 +14,6 @@ class ProductPageContainer extends React.Component {
     this.setState({ selectedImage: imageIndex });
   };
 
-  setHtml = (html) => {
-    return { __html: html };
-  };
-
   selectAttribute = (attributeToSelect, attributeName) => {
     const newSelectedAttributes = JSON.parse(JSON.stringify(this.state.selectedAttributes));
     newSelectedAttributes[attributeName] = attributeToSelect;
@@ -39,7 +35,6 @@ class ProductPageContainer extends React.Component {
         selectedImage={this.state.selectedImage}
         selectedAttributes={this.state.selectedAttributes}
         selectImage={this.selectImage}
-        setHtml={this.setHtml}
         selectAttribute={this.selectAttribute}
         addProductToCart={this.addProductToCart}
         selectedCurrency={this.props.selectedCurrency}

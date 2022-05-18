@@ -1,4 +1,5 @@
 import React from 'react';
+import { Interweave } from 'interweave';
 
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
 
@@ -64,9 +65,9 @@ class ProductInfo extends React.Component {
             Add to cart
           </AddToCartButton>
         )}
-        <ProductDescription
-          dangerouslySetInnerHTML={this.props.setHtml(this.props.product.description)}
-        ></ProductDescription>
+        <ProductDescription>
+          <Interweave content={this.props.product.description.toString()} />
+        </ProductDescription>
       </ProductInfoWrapper>
     );
   }
