@@ -20,7 +20,6 @@ import {
   Cart,
   CartBadge,
   CartButton,
-  CoverLayer,
 } from './styled';
 import { arrowDownIcon, arrowUpIcon, cartIcon, logo } from '../../../images';
 class Menu extends React.Component {
@@ -66,10 +65,6 @@ class Menu extends React.Component {
             />
           </Actions>
         </MenuWrapper>
-        <CoverLayer
-          display={(this.props.isCurrencyOpened || this.props.isCartOpened).toString()}
-          onClick={() => this.props.closePopUps()}
-        />
       </div>
     );
   }

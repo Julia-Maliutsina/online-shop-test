@@ -101,14 +101,3 @@ export const CartBadge = styled.div`
   text-align: center;
   padding-top: 2px;
 `;
-
-export const CoverLayer = styled.div`
-  display: ${(props) => (props.display === 'true' ? 'block' : 'none')};
-  position: fixed;
-  right: 0;
-  top: 80px;
-  z-index: 10;
-  width: 100%;
-  height: calc(100% - 80px);
-  background: #39374838;
-`;

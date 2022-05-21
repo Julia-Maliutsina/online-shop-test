@@ -39,6 +39,7 @@ class ProductPageContainer extends React.Component {
         addProductToCart={this.addProductToCart}
         selectedCurrency={this.props.selectedCurrency}
         selectedCurrencySymbol={this.props.selectedCurrencySymbol}
+        selectCurrency={this.props.selectCurrency}
       />
     );
   }

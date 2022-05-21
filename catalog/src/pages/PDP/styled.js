@@ -9,10 +9,10 @@ export const ProductWrapper = styled.div`
 
 export const ProductGallery = styled.div`
   flex-shrink: 1;
-  flex-grow: 1;
+  flex-grow: 0;
   max-height: calc(100vh - 170px);
   overflow-y: auto;
-  min-width: 110px;
+  width: 105px;
   margin-left: -5px;
   padding-left: 5px;
   margin-top: -5px;
