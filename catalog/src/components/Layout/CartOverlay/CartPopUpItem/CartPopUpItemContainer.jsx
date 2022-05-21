@@ -5,25 +5,18 @@ import { removeFromCart, changeQuantity } from 'store/actions';
 import CartPopUpItem from './CartPopUpItem';
 
 class CartPopUpItemContainer extends React.Component {
-  state = {
-    quantity: this.props.initialQuantity,
-    selectedAttributes: this.props.selectedAttributes,
-  };
-
   increaseQuantity = () => {
-    const newQuantity = JSON.parse(JSON.stringify(this.state.quantity)) + 1;
-    this.setState({ quantity: newQuantity });
-    changeQuantity(this.props.productId, this.state.selectedAttributes, newQuantity);
+    const newQuantity = JSON.parse(JSON.stringify(this.props.quantity)) + 1;
+    changeQuantity(this.props.productId, this.props.selectedAttributes, newQuantity);
   };
 
   decreaseQuantity = () => {
-    if (this.state.quantity > 1) {
-      const newQuantity = JSON.parse(JSON.stringify(this.state.quantity)) - 1;
-      changeQuantity(this.props.productId, this.state.selectedAttributes, newQuantity);
-      this.setState({ quantity: newQuantity });
+    if (this.props.quantity > 1) {
+      const newQuantity = JSON.parse(JSON.stringify(this.props.quantity)) - 1;
+      changeQuantity(this.props.productId, this.props.selectedAttributes, newQuantity);
     }
-    if (this.state.quantity === 1) {
-      removeFromCart(this.props.productId, this.state.selectedAttributes);
+    if (this.props.quantity === 1) {
+      removeFromCart(this.props.productId, this.props.selectedAttributes);
     }
   };
 
@@ -31,8 +24,8 @@ class CartPopUpItemContainer extends React.Component {
     return (
       <CartPopUpItem
         productId={this.props.productId}
-        quantity={this.state.quantity}
-        selectedAttributes={this.state.selectedAttributes}
+        quantity={this.props.quantity}
+        selectedAttributes={this.props.selectedAttributes}
         increaseQuantity={this.increaseQuantity}
         decreaseQuantity={this.decreaseQuantity}
         currency={this.props.currency}
