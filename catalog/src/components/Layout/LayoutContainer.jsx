@@ -25,7 +25,9 @@ class LayoutContainer extends React.Component {
   };
 
   closePopUps = () => {
-    this.setState({ isCurrencyOpened: false, isCartOpened: false });
+    if (this.state.isCartOpened || this.state.isCurrencyOpened) {
+      this.setState({ isCurrencyOpened: false, isCartOpened: false });
+    }
   };
 
   selectCurrency = (currencyToSelect, currencySymbolToSelect) => {

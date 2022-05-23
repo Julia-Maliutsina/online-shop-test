@@ -30,7 +30,7 @@ class CartList extends React.Component {
                 currency={this.props.currency}
                 currencySymbol={this.props.currencySymbol}
                 selectedAttributes={product.selectedAttributes}
-                initialQuantity={product.quantity}
+                quantity={product.quantity}
                 prices={product.prices}
               />
             ))}

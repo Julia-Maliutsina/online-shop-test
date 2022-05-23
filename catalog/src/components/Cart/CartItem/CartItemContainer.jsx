@@ -6,25 +6,21 @@ import CartItem from './CartItem';
 
 class CartItemContainer extends React.Component {
   state = {
-    quantity: this.props.initialQuantity,
     activeImage: 0,
-    selectedAttributes: this.props.selectedAttributes,
   };
 
   increaseQuantity = () => {
-    const newQuantity = JSON.parse(JSON.stringify(this.state.quantity)) + 1;
-    this.setState({ quantity: newQuantity });
-    changeQuantity(this.props.productId, this.state.selectedAttributes, newQuantity);
+    const newQuantity = JSON.parse(JSON.stringify(this.props.quantity)) + 1;
+    changeQuantity(this.props.productId, this.props.selectedAttributes, newQuantity);
   };
 
   decreaseQuantity = () => {
-    if (this.state.quantity > 1) {
-      const newQuantity = JSON.parse(JSON.stringify(this.state.quantity)) - 1;
-      changeQuantity(this.props.productId, this.state.selectedAttributes, newQuantity);
-      this.setState({ quantity: newQuantity });
+    if (this.props.quantity > 1) {
+      const newQuantity = JSON.parse(JSON.stringify(this.props.quantity)) - 1;
+      changeQuantity(this.props.productId, this.props.selectedAttributes, newQuantity);
     }
-    if (this.state.quantity === 1) {
-      removeFromCart(this.props.productId, this.state.selectedAttributes);
+    if (this.props.quantity === 1) {
+      removeFromCart(this.props.productId, this.props.selectedAttributes);
     }
   };
 
@@ -47,9 +43,9 @@ class CartItemContainer extends React.Component {
     return (
       <CartItem
         productId={this.props.productId}
-        quantity={this.state.quantity}
+        quantity={this.props.quantity}
         activeImage={this.state.activeImage}
-        selectedAttributes={this.state.selectedAttributes}
+        selectedAttributes={this.props.selectedAttributes}
         increaseQuantity={this.increaseQuantity}
         decreaseQuantity={this.decreaseQuantity}
         changeActiveImage={this.changeActiveImage}

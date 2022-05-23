@@ -11,8 +11,8 @@ export const ItemWrapper = styled.div`
 
 export const ItemImage = styled.div`
   position: relative;
-  height: 338px;
-  width: 356px;
+  height: 330px;
+  width: 354px;
   background-image: url(${(props) =>
     props.imageUrl ||
     'https://lh3.googleusercontent.com/EbXw8rOdYxOGdXEFjgNP8lh-YAuUxwhOAe2jhrz3sgqvPeMac6a6tHvT35V6YMbyNvkZL4R_a2hcYBrtfUhLvhf-N2X3OB9cvH4uMw=w1064-v0'});
