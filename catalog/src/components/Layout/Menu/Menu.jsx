@@ -26,7 +26,7 @@ class Menu extends React.Component {
   render() {
     return (
       <div>
-        <MenuWrapper>
+        <MenuWrapper onClick={() => this.props.closePopUps()}>
           <MenuCategories>
             <nav>
               <Query query={CATEGORIES_QUERY}>

@@ -16,6 +16,7 @@ class Layout extends React.Component {
           selectedCurrencySymbol={this.props.selectedCurrencySymbol}
           toggleCart={this.props.toggleCart}
           isCartOpened={this.props.isCartOpened}
+          closePopUps={this.props.closePopUps}
         />
         <PageWrapper onClick={() => this.props.closePopUps()}>
           {!this.props.disableTitle && (

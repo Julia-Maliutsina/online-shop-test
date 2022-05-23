@@ -5,12 +5,16 @@ import { addToCart } from 'store/actions';
 import CatalogItem from './CatalogItem';
 
 class CatalogItemContainer extends React.Component {
-  addProductToCart = (id, prices, event) => {
+  addProductToCart = (id, attributes, prices, event) => {
     event.preventDefault();
+    let firstAttributes = {};
+    for (let a = 0; a < attributes.length; a++) {
+      firstAttributes[attributes[a].name] = attributes[a].items[0].value;
+    }
     const productToAdd = {
       id: id,
       prices: prices,
-      selectedAttributes: {},
+      selectedAttributes: firstAttributes,
     };
     addToCart(productToAdd);
   };

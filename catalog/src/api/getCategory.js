@@ -16,7 +16,10 @@ const CATEGORY_QUERY = gql`
           }
         }
         attributes {
-          id
+          name
+          items {
+            value
+          }
         }
         inStock
       }

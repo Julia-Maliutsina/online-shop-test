@@ -12,19 +12,21 @@ class CatalogItem extends React.Component {
       <Link to={`/${this.props.category}/:${this.props.product.id}`}>
         <ItemWrapper>
           <ItemImage imageUrl={this.props.product.gallery[0]}>
-            {!this.props.product.inStock && <OutOfStock>Out of stock</OutOfStock>}
-            {!this.props.product.attributes.length && this.props.product.inStock && (
+            {this.props.product.inStock ? (
               <AddToCart
                 src={addToCartIcon}
                 alt="add to cart"
                 onClick={(event) => {
                   this.props.addProductToCart(
                     this.props.product.id,
+                    this.props.product.attributes,
                     this.props.product.prices,
                     event,
                   );
                 }}
               />
+            ) : (
+              <OutOfStock>Out of stock</OutOfStock>
             )}
           </ItemImage>
           <ItemName>
