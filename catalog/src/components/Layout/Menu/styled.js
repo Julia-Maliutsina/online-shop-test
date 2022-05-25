@@ -41,8 +41,8 @@ export const MenuCategory = styled.div`
 `;
 
 export const Logo = styled.img`
-  flex-grow: 1;
-  flex-shrink: 0;
+  flex-grow: 2;
+  flex-shrink: 1;
   height: 41px;
   margin-top: -5px;
 `;
@@ -51,6 +51,7 @@ export const Actions = styled.div`
   flex-grow: 1;
   flex-shrink: 0;
   text-align: right;
+  width: 234px;
 `;
 
 export const Arrow = styled.img`
