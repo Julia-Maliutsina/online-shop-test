@@ -10,6 +10,6 @@ export const Title = styled.p`
   line-height: 67px;
   color: #1d1f22;
   margin-top: 0;
-  margin-bottom: ${(props) => (props.pagename === 'cart' ? '55px' : '119px')};
+  margin-bottom: ${(props) => (props.pagename === 'cart' ? '55px' : '103px')};
   text-transform: ${(props) => (props.pagename === 'cart' ? 'uppercase' : 'capitalize')};
 `;
