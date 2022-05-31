@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+export const LinkToProduct = styled(Link)`
+  justify-self: center;
+  width: 386px;
+`;
 
 export const ItemWrapper = styled.div`
   padding: 16px;

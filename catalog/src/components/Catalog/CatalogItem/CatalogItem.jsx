@@ -1,18 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { findPriceInSelectedCurrency } from 'utils/findPrice';
 import { addToCartIcon } from 'images';
 
-import { ItemWrapper, ItemImage, ItemName, ItemPrice, AddToCart, OutOfStock } from './styled';
+import {
+  LinkToProduct,
+  ItemWrapper,
+  ItemImage,
+  ItemName,
+  ItemPrice,
+  AddToCart,
+  OutOfStock,
+} from './styled';
 
 class CatalogItem extends React.Component {
   render() {
     return (
-      <Link to={`/${this.props.category}/:${this.props.product.id}`}>
-        <ItemWrapper>
+      <LinkToProduct to={`/${this.props.category}/:${this.props.product.id}`}>
+        <ItemWrapper
+          onMouseOut={() => this.props.hideCartIcon()}
+          onMouseOver={() => this.props.showCartIcon()}
+        >
           <ItemImage imageUrl={this.props.product.gallery[0]}>
-            {this.props.product.inStock ? (
+            {this.props.product.inStock && this.props.isCartIconShown && (
               <AddToCart
                 src={addToCartIcon}
                 alt="add to cart"
@@ -25,9 +35,8 @@ class CatalogItem extends React.Component {
                   );
                 }}
               />
-            ) : (
-              <OutOfStock>Out of stock</OutOfStock>
             )}
+            {!this.props.product.inStock && <OutOfStock>Out of stock</OutOfStock>}
           </ItemImage>
           <ItemName>
             {this.props.product.brand} {this.props.product.name}
@@ -37,7 +46,7 @@ class CatalogItem extends React.Component {
             {findPriceInSelectedCurrency(this.props.currency, this.props.product.prices)}
           </ItemPrice>
         </ItemWrapper>
-      </Link>
+      </LinkToProduct>
     );
   }
 }
