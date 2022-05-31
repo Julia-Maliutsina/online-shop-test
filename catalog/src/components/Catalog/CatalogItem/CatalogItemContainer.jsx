@@ -5,6 +5,10 @@ import { addToCart } from 'store/actions';
 import CatalogItem from './CatalogItem';
 
 class CatalogItemContainer extends React.Component {
+  state = {
+    isCartIconShown: false,
+  };
+
   addProductToCart = (id, attributes, prices, event) => {
     event.preventDefault();
     let firstAttributes = {};
@@ -19,6 +23,14 @@ class CatalogItemContainer extends React.Component {
     addToCart(productToAdd);
   };
 
+  hideCartIcon = () => {
+    this.setState({ isCartIconShown: false });
+  };
+
+  showCartIcon = () => {
+    this.setState({ isCartIconShown: true });
+  };
+
   render() {
     return (
       <CatalogItem
@@ -27,6 +39,9 @@ class CatalogItemContainer extends React.Component {
         currency={this.props.currency}
         currencySymbol={this.props.currencySymbol}
         addProductToCart={this.addProductToCart}
+        hideCartIcon={this.hideCartIcon}
+        showCartIcon={this.showCartIcon}
+        isCartIconShown={this.state.isCartIconShown}
       />
     );
   }
